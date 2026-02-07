@@ -54,7 +54,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer lokal And
 
 1.  **Clone repositori ini:**
     ```bash
-    git clone [https://github.com/username-anda/kanbanflow.git](https://github.com/username-anda/kanbanflow.git)
+    git clone [https://github.com/altvesper/kanbanflow.git](https://github.com/altvesper/kanbanflow.git)
     ```
 
 2.  **Buka direktori proyek:**
