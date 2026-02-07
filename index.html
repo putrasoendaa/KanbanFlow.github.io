@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KanbanFlow | Smart Task Board</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%234f46e5%22></rect><path d=%22M25 25h12v50H25zm20 0h12v50H45zm20 0h12v50H65z%22 fill=%22white%22/></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-layer-group"></i>
+                <h1>KanbanFlow</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <button id="add-btn" class="add-btn">
+                    <i class="fa-solid fa-plus"></i> <span class="btn-text">New Task</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="board">
+            <div class="column" id="todo">
+                <div class="column-header header-todo">
+                    <h2>To Do</h2>
+                    <span class="count" id="todo-count">0</span>
+                </div>
+                <div class="task-list" id="todo-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+
+            <div class="column" id="inprogress">
+                <div class="column-header header-progress">
+                    <h2>In Progress</h2>
+                    <span class="count" id="inprogress-count">0</span>
+                </div>
+                <div class="task-list" id="inprogress-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+
+            <div class="column" id="done">
+                <div class="column-header header-done">
+                    <h2>Done</h2>
+                    <span class="count" id="done-count">0</span>
+                </div>
+                <div class="task-list" id="done-list" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+        </div>
+        
+        <div class="mobile-hint">
+            <p><i class="fa-solid fa-circle-info"></i> Tap a card to move it forward.</p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Task</h3>
+                <button id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="task-input" placeholder="e.g. Fix Navigation Bar bug..." maxlength="60" autocomplete="off">
+                <div class="priority-selector">
+                    <label>Priority:</label>
+                    <select id="priority-input">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-btn">Create Task</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+/* --- SETUP & VARIABLES --- */
+:root {
+    /* LIGHT MODE (Default) */
+    --bg-app: #f0f2f5;
+    --col-bg: #e2e8f0;      
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --card-bg: #ffffff;
+    --primary: #4f46e5;
+    --todo-color: #3b82f6;
+    --prog-color: #f59e0b;
+    --done-color: #10b981;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* DARK MODE OVERRIDES */
+body.dark-mode {
+    --bg-app: #0f172a;      
+    --col-bg: #1e293b;      
+    --text-main: #f1f5f9;   
+    --text-muted: #94a3b8;  
+    --card-bg: #334155;     
+    --primary: #6366f1;     
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* --- LAYOUT --- */
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    /* Transisi agar perubahan layout halus */
+    transition: all 0.3s ease;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.logo i { color: var(--primary); }
+
+/* Theme Toggle Button */
+.icon-btn {
+    background: var(--card-bg);
+    color: var(--text-main);
+    border: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: var(--shadow);
+}
+.icon-btn:hover { transform: scale(1.1); }
+
+/* Add Task Button */
+.add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    display: flex; align-items: center; gap: 8px;
+}
+.add-btn:hover { background: #4338ca; transform: translateY(-2px); }
+
+/* --- BOARD --- */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    flex-grow: 1;
+    overflow-y: hidden;
+}
+
+/* --- COLUMNS --- */
+.column {
+    background: var(--col-bg);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
+.column-header h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-todo h2 { color: var(--todo-color); }
+.header-progress h2 { color: var(--prog-color); }
+.header-done h2 { color: var(--done-color); }
+
+.count {
+    background: var(--card-bg);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.task-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 100px;
+}
+
+.task-list::-webkit-scrollbar { width: 6px; }
+.task-list::-webkit-scrollbar-thumb { background: var(--text-muted); opacity: 0.3; border-radius: 3px; }
+
+/* --- TASK CARD --- */
+.task-card {
+    background: var(--card-bg);
+    color: var(--text-main);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    cursor: grab;
+    border-left: 4px solid transparent;
+    animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.task-card:hover { transform: translateY(-3px); }
+.task-card:active { cursor: grabbing; }
+
+.task-card.priority-high { border-left-color: #ef4444; }
+.task-card.priority-medium { border-left-color: #f59e0b; }
+.task-card.priority-low { border-left-color: #10b981; }
+
+.task-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.task-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; color: var(--text-muted);
+}
+
+.delete-btn {
+    background: none; border: none; color: var(--text-muted);
+    cursor: pointer; font-size: 0.9rem; padding: 4px;
+}
+.task-card:hover .delete-btn { color: #ef4444; }
+
+.task-card.dragging { opacity: 0.5; border: 2px dashed var(--primary); background: var(--bg-app); }
+.task-card.deleting { animation: scaleOut 0.3s ease forwards; }
+@keyframes scaleOut { to { opacity: 0; transform: scale(0.8); height: 0; margin: 0; padding: 0; } }
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 1000;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+.modal-content {
+    background: var(--card-bg);
+    color: var(--text-main);
+    width: 90%; max-width: 400px;
+    border-radius: 16px; padding: 24px;
+    transform: scale(0.9); transition: transform 0.3s;
+}
+.modal-overlay.active .modal-content { transform: scale(1); }
+
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+#close-modal { background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
+
+.modal-body input, .modal-body select {
+    width: 100%; padding: 12px;
+    background: var(--bg-app); color: var(--text-main);
+    border: 2px solid var(--col-bg); border-radius: 8px;
+    font-size: 1rem; margin-bottom: 16px; outline: none;
+}
+.modal-body input:focus { border-color: var(--primary); }
+
+#save-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+.mobile-hint { display: none; text-align: center; margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); padding-bottom: 20px; }
+
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVE LOGIC)
+   ========================================= */
+
+/* 1. Tablet & Mobile Umum (Responsive Board) */
+@media (max-width: 768px) {
+    .app-container { padding: 16px; height: auto; }
+    .board { display: flex; flex-direction: column; gap: 24px; overflow-y: visible; }
+    .column { min-height: 200px; }
+    .mobile-hint { display: block !important; }
+}
+
+/* 2. LAYAR SANGAT KECIL (HP < 480px) - Header Stacked */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column; /* Susun logo dan tombol ke bawah */
+        gap: 16px;             /* Beri jarak antar baris */
+        margin-bottom: 1.5rem;
+    }
+
+    .header-actions {
+        width: 100%;            /* Tombol ambil lebar penuh container */
+        justify-content: center; /* Posisikan di tengah */
+        gap: 20px;              /* Jarak antar tombol tema dan add task */
+    }
+
+    /* Opsional: Membuat tombol tambah task sedikit lebih lebar agar mudah ditekan */
+    .add-btn {
+        padding: 12px 30px;
+    }
+    
+    /* Menampilkan teks tombol kembali jika sebelumnya disembunyikan */
+    .btn-text { 
+        display: inline-block; 
+    }
+}
