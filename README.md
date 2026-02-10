@@ -1,75 +1,88 @@
-# KanbanFlow - Aplikasi Manajemen Tugas
+KanbanFlow - Task Management Application
 
-KanbanFlow adalah aplikasi manajemen tugas berbasis web yang dirancang untuk membantu pengguna memvisualisasikan dan mengatur alur kerja mereka secara efisien. Aplikasi ini menerapkan metodologi Kanban dengan antarmuka yang intuitif, memungkinkan pengguna untuk memindahkan tugas antara status "To Do", "In Progress", dan "Done".
+KanbanFlow is a web-based task management application designed to help users visualize and organize their workflows efficiently. Implementing the Kanban methodology with an intuitive interface, it allows users to move tasks between "To Do", "In Progress", and "Done" statuses.
 
-Dikembangkan menggunakan Vanilla JavaScript murni tanpa ketergantungan pada library atau framework eksternal, proyek ini menonjolkan pemahaman mendalam tentang konsep dasar pengembangan web modern.
-
-## Demo Aplikasi
+Developed using pure Vanilla JavaScript without dependencies on external libraries or frameworks, this project highlights a deep understanding of modern web development fundamentals.
+Live Demo
 
 https://altvesper.github.io/KanbanFlow.github.io/
+Key Features
 
-## Fitur Utama
+The application comes with a suite of features to boost user productivity:
 
-Aplikasi ini dilengkapi dengan serangkaian fitur untuk meningkatkan produktivitas pengguna:
+    Visual Task Management: Organizes tasks into three main status columns.
 
-* **Manajemen Tugas Visual:** Mengorganisir tugas ke dalam tiga kolom status utama.
-* **Antarmuka Drag & Drop (Desktop):** Memanfaatkan HTML5 Drag and Drop API native untuk memindahkan kartu tugas antar kolom dengan mulus pada perangkat desktop.
-* **Interaksi Ramah Seluler:** Sistem deteksi perangkat cerdas yang mengubah interaksi "drag & drop" menjadi "tap-to-move" pada layar sentuh atau perangkat kecil (< 768px), memastikan pengalaman pengguna yang optimal di smartphone.
-* **Mode Gelap & Terang:** Dukungan tema ganda yang mendeteksi preferensi sistem pengguna dan menyimpan pilihan tema manual.
-* **Penyimpanan Data Persisten:** Semua data tugas disimpan secara lokal menggunakan `localStorage` browser, sehingga data tidak hilang saat halaman dimuat ulang.
-* **Indikator Prioritas:** Penandaan visual (kode warna) untuk tingkat prioritas tugas (Low, Medium, High).
-* **Desain Responsif:** Tata letak adaptif menggunakan CSS Grid dan Flexbox yang menyesuaikan tampilan dari format horizontal (desktop) ke vertikal (mobile).
+    Drag & Drop Interface (Desktop): Utilizes the native HTML5 Drag and Drop API to seamlessly move task cards between columns on desktop devices.
 
-## Teknologi yang Digunakan
+    Mobile-Friendly Interaction: Intelligent device detection that switches "drag & drop" interactions to "tap-to-move" on touch screens or small devices (< 768px), ensuring an optimal user experience on smartphones.
 
-Proyek ini dibangun dengan standar teknologi web terkini:
+    Dark & Light Mode: Dual-theme support that detects system preferences and saves manual theme choices.
 
-* **HTML5:** Penggunaan elemen semantik untuk struktur dokumen yang baik dan aksesibilitas.
-* **CSS3:**
-    * CSS Variables untuk manajemen tema (Dark/Light mode).
-    * CSS Grid & Flexbox untuk tata letak responsif.
-    * Keyframe Animations untuk transisi antarmuka yang halus.
-* **JavaScript (ES6+):**
-    * Manipulasi DOM tingkat lanjut.
-    * Event Handling (Drag events, Click events).
-    * State Management menggunakan Array dan Object.
-    * Local Storage API untuk persistensi data.
+    Persistent Data Storage: All task data is stored locally using the browser's localStorage, preventing data loss upon page reload.
 
-## Sorotan Teknis
+    Priority Indicators: Visual markers (color coding) for task priority levels (Low, Medium, High).
 
-Proyek ini mendemonstrasikan penyelesaian masalah teknis dalam pengembangan frontend, antara lain:
+    Responsive Design: Adaptive layout using CSS Grid and Flexbox that adjusts the view from horizontal (desktop) to vertical (mobile) formats.
 
-1.  **Logika Cross-Platform:**
-    Tantangan utama adalah API Drag & Drop HTML5 yang tidak didukung secara native pada banyak browser seluler. Solusi yang diterapkan adalah logika kondisional: jika lebar layar di bawah 768px, event listener berubah menjadi `click` yang memindahkan status tugas secara otomatis ke tahap berikutnya (misal: To Do -> In Progress).
+Technologies Used
 
-2.  **Manajemen State Tanpa Framework:**
-    Alih-alih memanipulasi DOM secara langsung untuk setiap perubahan data, aplikasi ini menggunakan "Single Source of Truth" berupa array objek di JavaScript. Setiap perubahan data memperbarui array tersebut, menyimpannya ke Local Storage, dan merender ulang tampilan (Re-rendering) untuk menjaga konsistensi data.
+This project is built using current web technology standards:
 
-3.  **Algoritma Pencarian & Filter (Drag & Drop):**
-    Mengimplementasikan logika untuk mengidentifikasi ID tugas yang sedang ditarik (`dragstart`), mendeteksi zona target (`dragover`), dan memperbarui status tugas berdasarkan ID kolom tempat tugas dijatuhkan (`drop`).
+    HTML5: Use of semantic elements for solid document structure and accessibility.
 
-## Cara Instalasi dan Menjalankan
+    CSS3:
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer lokal Anda:
+        CSS Variables for theme management (Dark/Light mode).
 
-1.  **Clone repositori ini:**
-    ```bash
-    git clone [https://github.com/altvesper/kanbanflow.git](https://github.com/altvesper/kanbanflow.git)
-    ```
+        CSS Grid & Flexbox for responsive layouts.
 
-2.  **Buka direktori proyek:**
-    ```bash
+        Keyframe Animations for smooth interface transitions.
+
+    JavaScript (ES6+):
+
+        Advanced DOM Manipulation.
+
+        Event Handling (Drag events, Click events).
+
+        State Management using Arrays and Objects.
+
+        Local Storage API for data persistence.
+
+Technical Highlights
+
+This project demonstrates technical problem-solving in frontend development, including:
+
+    Cross-Platform Logic:
+    The main challenge was the HTML5 Drag & Drop API, which is not natively supported on many mobile browsers. The solution implemented uses conditional logic: if the screen width is below 768px, event listeners switch to click events that automatically move the task status to the next stage (e.g., To Do -> In Progress).
+
+    Framework-less State Management:
+    Instead of manipulating the DOM directly for every data change, the application uses a "Single Source of Truth" via a JavaScript object array. Every data change updates the array, saves it to Local Storage, and re-renders the view to maintain data consistency.
+
+    Drag & Drop Logic:
+    Implementation of logic to identify the task ID being dragged (dragstart), detect the target zone (dragover), and update the task status based on the column ID where the task is dropped (drop).
+
+Installation and Setup
+
+Follow these steps to run the project on your local machine:
+
+    Clone this repository:
+    Bash
+
+    git clone https://github.com/altvesper/kanbanflow.git
+
+    Navigate to the project directory:
+    Bash
+
     cd kanbanflow
-    ```
 
-3.  **Jalankan aplikasi:**
-    Cukup buka file `index.html` menggunakan browser web modern (Chrome, Firefox, Edge, Safari). Tidak diperlukan instalasi server backend atau dependensi Node.js.
+    Run the application:
+    Simply open the index.html file using a modern web browser (Chrome, Firefox, Edge, Safari). No backend server installation or Node.js dependencies are required.
 
-## Struktur Proyek
+Project Structure
+Plaintext
 
-```text
 kanbanflow/
-├── index.html      # Struktur utama dan markup aplikasi
-├── style.css       # Gaya tampilan, tema, dan responsivitas
-├── script.js       # Logika bisnis, manipulasi DOM, dan penanganan data
-└── README.md       # Dokumentasi proyek
+├── index.html      # Main structure and application markup
+├── style.css       # Styling, theming, and responsiveness
+├── script.js       # Business logic, DOM manipulation, and data handling
+└── README.md       # Project documentation
